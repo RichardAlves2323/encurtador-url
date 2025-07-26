@@ -1,4 +1,4 @@
-import { Url } from "../../entities/Url";
+import { Url } from "../../../domain/entities/Url";
 
 export interface IUrlUseCase {
     create(url: Url): Promise<Url>;
