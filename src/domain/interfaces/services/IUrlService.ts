@@ -1,9 +1,9 @@
-import { Url } from "../../../domain/entities/Url";
+import { Url } from "../../entities/Url";
 
-export interface IUrlUseCase {
+export interface IUrlService {
     create(url: Url): Promise<Url>;
     findAll(): Promise<Url[]>;
-    findBySlug(slug: string): Promise<Url>;
+    redirectBySlug(slug: string): Promise<Url>;
     update(url: Url): Promise<Url>;
     delete(slug: string): Promise<Url>;
 }
