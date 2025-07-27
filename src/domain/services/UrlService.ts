@@ -36,7 +36,7 @@ export class UrlService implements IUrlService {
         if (!url) throw new UrlNotFoundError();
         
         url.addOneClick();
-        await this.urlRepository.update(url);
+        await this.urlRepository.updateClicksBySlug(url.getSlug()!);
 
         return url.getLongUrl();
     }
