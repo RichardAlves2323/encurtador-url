@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx src/index.ts"
+    "build:frontend": "cd src/presentation/frontend && npm install && npm run build",
+    "start:backend": "tsx src/presentation/server.ts",
+    "dev": "npm run build:frontend && npm run start:backend"
   },
   "keywords": [],
   "author": "",
