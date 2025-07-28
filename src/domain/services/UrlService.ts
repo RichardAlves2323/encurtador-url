@@ -46,6 +46,10 @@ export class UrlService implements IUrlService {
     }
 
     public async delete(slug: string): Promise<void> {
+        const url = await this.urlRepository.findBySlug(slug);
+
+        if (!url) throw new UrlNotFoundError();
+        
         await this.urlRepository.deleteBySlug(slug);
     }
     
