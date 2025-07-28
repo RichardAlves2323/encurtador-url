@@ -1,44 +1,102 @@
-# 🔗 Encurtador de URLs
+# 🔗 Desafio - Encurtador de URL
 
-Este é um projeto Fullstack desenvolvido como parte de um desafio técnico. A proposta é criar uma aplicação que permita encurtar URLs, redirecionar os acessos e contabilizar o número de cliques em cada link encurtado.
-
----
-
-## ✨ Funcionalidades
-
-- Encurtar qualquer URL válida.
-- Redirecionar a URL curta para a original.
-- Contar e exibir a quantidade de acessos.
-- API REST construída com boas práticas.
-- Frontend simples em React + TailwindCSS para interação.
+Este projeto é uma aplicação fullstack que implementa um **encurtador de URLs** seguindo os princípios da **Arquitetura Limpa**, com backend em **Node.js (Express)** e frontend em **React** com **Bootstrap**.
 
 ---
 
-## ⚙️ Tecnologias utilizadas
+## 🚀 Funcionalidades
+
+- Criar URLs encurtadas.
+- Listar URLs existentes com:
+  - URL original.
+  - URL encurtada.
+  - Quantidade de cliques.
+- Redirecionamento automático via slug.
+- Deletar uma URL encurtada.
+- Contador de cliques atualizado em tempo real ao acessar a URL encurtada.
+
+---
+
+## 🛠 Tecnologias utilizadas
 
 ### Backend
-- [Node.js 20+](https://nodejs.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Express](https://expressjs.com/)
-- [Prisma ORM](https://www.prisma.io/)
-- [MySQL (via Docker)](https://hub.docker.com/_/mysql)
-- [TSX](https://github.com/esbuild-kit/tsx) para rodar código TypeScript diretamente
+- **Node.js**
+- **Express**
+- **Prisma ORM**
 
 ### Frontend
-- [React](https://react.dev/)
-- [Vite](https://vitejs.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Axios](https://axios-http.com/)
+- **React**
+- **Axios**
+- **Bootstrap 5**
 
 ---
 
-## 🧠 Arquitetura adotada
+## 📁 Estrutura de Pastas
 
-Mesmo sendo um projeto simples, foi aplicada uma separação em camadas visando a manutenção e a escalabilidade futura.
+```
+src/
+│
+├── domain/              # Camada de domínio
+│   ├── entities/        # Entidades do domínio (ex: Url)
+│   ├── interfaces/      # Interfaces de repositórios e serviços
+│   └── services/        # Implementações da regra de negócio
 
-Essa estrutura permite seguir princípios como:
-- Separação de responsabilidades
-- Testabilidade
-- Independência do framework
-- Baixo acoplamento entre camadas
+├── infra/               # Camada de infraestrutura
+│   ├── database/        # Implementação do repositório com Prisma
+│   ├── create_slug/            # Gerador de slugs
+│   └── dependency_injection/     # Injeção de dependências
+
+├── presentation/        # Camada de apresentação
+│   ├── frontend/        # Código React (UI)
+│   ├── routes/          # Rotas do Express
+│   └── server.ts        # Inicialização do servidor Express
+
+```
+
+---
+
+## ⚙️ Requisitos
+
+- Node.js
+- MySQL
+
+---
+
+## 🔐 Configuração `.env`
+
+Crie um arquivo `.env` na raiz do projeto com a seguinte variável:
+
+```
+DATABASE_URL="mysql://usuario:senha@localhost:3306/nome_do_banco"
+```
+
+> ⚠️ Substitua com suas credenciais reais do banco.
+
+---
+
+## 📦 Instalação e Uso
+
+```bash
+# Instale as dependências
+npm install
+
+# Gere o client do Prisma
+npx prisma generate --schema=src/infra/database/prisma/
+
+# Rode as migrations (opcional, se quiser criar as tabelas)
+npx prisma migrate dev --name init --schema=src/infra/database/prisma/
+
+# Build do frontend + start do servidor
+npm run dev
+```
+
+---
+
+## 💡 Observações
+
+- As URLs encurtadas são geradas automaticamente e redirecionam corretamente via `/slug`.
+- Toda vez que o link encurtado é acessado, o contador de cliques é atualizado.
+- Ao clicar no link encurtado na interface, a lista é atualizada automaticamente.
+
+---
+
